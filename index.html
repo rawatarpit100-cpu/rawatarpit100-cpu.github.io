@@ -3,45 +3,267 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name | Portfolio</title>
+  <meta name="description" content="Portfolio of Arpit Rawat, MBA student at Lovely Professional University and aspiring Business Analyst skilled in Excel, Power BI, Python and SQL.">
+  <title>Arpit Rawat | Aspiring Business Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; color: #222; line-height: 1.6; }
-    header { background: #0d1117; color: white; text-align: center; padding: 60px 20px; }
-    section { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-    h2 { border-bottom: 2px solid #0d1117; padding-bottom: 5px; }
-    .project { background: #f4f4f4; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-    a { color: #0969da; }
+    :root {
+      --navy: #0b1b34;
+      --navy-2: #12294d;
+      --teal: #14b8a6;
+      --gold: #f5b942;
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Navigation ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11, 27, 52, 0.95);
+      backdrop-filter: blur(6px);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 16px 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+    }
+    .logo { color: #fff; font-weight: 800; font-size: 1.15rem; letter-spacing: .5px; }
+    .logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { color: #cbd5e1; font-size: .92rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 60%, #0f766e 140%);
+      color: #fff; text-align: center; padding: 100px 24px 110px;
+    }
+    .badge {
+      display: inline-block; padding: 6px 16px; border-radius: 999px;
+      border: 1px solid rgba(20,184,166,.5); color: var(--teal);
+      font-size: .85rem; font-weight: 600; margin-bottom: 22px; letter-spacing: .5px;
+    }
+    .hero h1 { font-size: clamp(2.3rem, 6vw, 3.8rem); font-weight: 800; line-height: 1.15; }
+    .hero h1 span { color: var(--gold); }
+    .hero .tagline { margin: 18px auto 0; max-width: 640px; color: #cbd5e1; font-size: 1.1rem; }
+    .hero-buttons { margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: .95rem;
+      transition: transform .2s, box-shadow .2s, background .2s; display: inline-block;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--teal); color: #04201d; box-shadow: 0 6px 18px rgba(20,184,166,.35); }
+    .btn-outline { border: 1.5px solid #94a3b8; color: #fff; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ---------- Sections ---------- */
+    section { max-width: 1100px; margin: 0 auto; padding: 80px 24px 10px; }
+    .section-title { font-size: 2rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .section-title::after {
+      content: ""; display: block; width: 56px; height: 4px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--gold)); margin-top: 10px;
+    }
+    .section-sub { color: var(--muted); margin: 14px 0 34px; max-width: 620px; }
+
+    /* ---------- About ---------- */
+    .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; margin-top: 26px; }
+    .about-text p { margin-bottom: 14px; color: #334155; }
+    .facts { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+    .facts h3 { font-size: 1rem; color: var(--navy); margin-bottom: 14px; }
+    .fact { display: flex; flex-direction: column; margin-bottom: 14px; }
+    .fact:last-child { margin-bottom: 0; }
+    .fact small { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .8px; }
+    .fact strong { color: var(--navy); font-size: .98rem; }
+
+    /* ---------- Skills ---------- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(15,23,42,.09); border-color: var(--teal); }
+    .icon {
+      width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: var(--teal);
+      font-weight: 800; margin-bottom: 16px; font-size: 1.1rem;
+    }
+    .card h3 { color: var(--navy); font-size: 1.1rem; margin-bottom: 6px; }
+    .card p { color: var(--muted); font-size: .93rem; }
+
+    /* ---------- Education ---------- */
+    .timeline { border-left: 3px solid var(--teal); padding-left: 26px; margin-top: 28px; }
+    .timeline-item { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+    .timeline-item::before {
+      content: ""; position: absolute; left: -36px; top: 30px; width: 16px; height: 16px;
+      background: var(--gold); border: 3px solid var(--bg); border-radius: 50%; box-shadow: 0 0 0 2px var(--teal);
+    }
+    .timeline-item h3 { color: var(--navy); font-size: 1.15rem; }
+    .timeline-item .place { color: var(--teal); font-weight: 600; font-size: .95rem; }
+    .timeline-item p { color: var(--muted); margin-top: 8px; font-size: .94rem; }
+
+    /* ---------- Projects ---------- */
+    .project { display: flex; flex-direction: column; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px; }
+    .tag { background: #e6faf7; color: #0f766e; padding: 4px 12px; border-radius: 999px; font-size: .78rem; font-weight: 600; }
+    .project .link { margin-top: auto; color: var(--teal); font-weight: 600; font-size: .93rem; }
+    .project .link:hover { color: var(--navy); }
+
+    /* ---------- Contact ---------- */
+    .contact-box {
+      background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff;
+      border-radius: 18px; padding: 50px 30px; text-align: center; margin-top: 10px;
+    }
+    .contact-box h2 { font-size: 1.9rem; font-weight: 800; }
+    .contact-box p { color: #cbd5e1; margin: 12px auto 28px; max-width: 520px; }
+    .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    footer { text-align: center; color: var(--muted); font-size: .88rem; padding: 50px 24px 40px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 760px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 70px 20px 80px; }
+      section { padding-top: 60px; }
+      .nav-inner { justify-content: center; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Your Name</h1>
-    <p>Student | Aspiring Developer</p>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#home" class="logo">Arpit<span>.</span>Rawat</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="home">
+    <div class="badge">MBA Student &bull; Aspiring Business Analyst</div>
+    <h1>Hi, I'm <span>Arpit Rawat</span></h1>
+    <p class="tagline">I turn data into clear insights and business decisions using Excel, Power BI, SQL and Python.</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
   </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>Write 2-3 lines about yourself and what you are learning.</p>
-  </section>
-
-  <section>
-    <h2>Skills</h2>
-    <p>HTML, CSS, JavaScript, Python</p>
-  </section>
-
-  <section>
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Project One</h3>
-      <p>Short description of what it does.</p>
-      <a href="https://github.com/yourusername/project-one">View Code</a>
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am an MBA student at Lovely Professional University with a strong interest in business analytics. I enjoy working with data to uncover patterns, answer business questions and support better decision-making.</p>
+        <p>I combine management knowledge with technical tools such as Excel, Power BI, SQL and Python to analyse data and present it in a clear, meaningful way. I am currently looking to build my career as a Business Analyst and grow through real-world projects and opportunities.</p>
+      </div>
+      <aside class="facts">
+        <h3>Quick Facts</h3>
+        <div class="fact"><small>Currently</small><strong>Pursuing MBA</strong></div>
+        <div class="fact"><small>University</small><strong>Lovely Professional University</strong></div>
+        <div class="fact"><small>Career Goal</small><strong>Business Analyst</strong></div>
+        <div class="fact"><small>Core Tools</small><strong>Excel, Power BI, SQL, Python</strong></div>
+      </aside>
     </div>
   </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: you@example.com</p>
-    <p><a href="https://linkedin.com/in/yourprofile">LinkedIn</a></p>
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <p class="section-sub">The tools I use to collect, clean, analyse and present data.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">X</div>
+        <h3>Microsoft Excel</h3>
+        <p>Data cleaning, formulas, pivot tables and reports for everyday business analysis.</p>
+      </div>
+      <div class="card">
+        <div class="icon">BI</div>
+        <h3>Power BI</h3>
+        <p>Interactive dashboards and visual reports that make data easy to understand.</p>
+      </div>
+      <div class="card">
+        <div class="icon">SQL</div>
+        <h3>SQL</h3>
+        <p>Querying and organising data from databases to answer business questions.</p>
+      </div>
+      <div class="card">
+        <div class="icon">Py</div>
+        <h3>Python</h3>
+        <p>Data analysis and automation to work with larger datasets efficiently.</p>
+      </div>
+    </div>
   </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Master of Business Administration (MBA)</h3>
+        <div class="place">Lovely Professional University (LPU)</div>
+        <p>Currently pursuing. Building a foundation in management, business strategy and data-driven decision-making, with a focus on business analytics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">A selection of my work. More projects will be added soon.</p>
+    <div class="grid">
+      <!-- EDIT THIS CARD: replace the description with what you actually did in the project -->
+      <div class="card project">
+        <div class="icon">LS</div>
+        <h3>La Sapien Clothing Brand</h3>
+        <p>A clothing brand project covering the business side of building and presenting a fashion label. Add 1-2 lines here on what you did, for example the analysis, planning or tools you used.</p>
+        <div class="tag-row">
+          <span class="tag">Business Project</span>
+          <span class="tag">Brand</span>
+          <span class="tag">Analysis</span>
+        </div>
+        <!-- Replace the link below with the project's own GitHub link once it is uploaded -->
+        <a class="link" href="https://github.com/rawatarpit100-cpu" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="contact-box">
+      <h2>Let's Connect</h2>
+      <p>I am open to internships, opportunities and conversations about data and business analytics. Feel free to reach out.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:rawatarpit100@gmail.com">Email Me</a>
+        <a class="btn btn-outline" href="https://github.com/rawatarpit100-cpu" target="_blank" rel="noopener">GitHub</a>
+        <!-- When your resume is ready, upload it to the repo (for example resume.pdf) and change href="#" to href="resume.pdf" -->
+        <a class="btn btn-outline" href="#" title="Resume coming soon">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Arpit Rawat. All rights reserved.
+  </footer>
+
 </body>
 </html>
